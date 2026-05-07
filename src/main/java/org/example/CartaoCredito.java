@@ -23,7 +23,6 @@ public class CartaoCredito {
         }
     }
 
-
     public String getNumeroCartao() { return numeroCartao; }
     public String getTitular() { return titular; }
     public double getLimiteDisponivel() { return limiteDisponivel; }

@@ -9,7 +9,6 @@ public class Main {
 
         ProcessadorPagamento payShield = new ProcessadorPagamento(meuCartao);
 
-
         payShield.executarVenda(2000.0);
 
         payShield.executarVenda(4000.0);
