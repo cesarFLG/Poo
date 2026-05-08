@@ -16,7 +16,7 @@ public class ProcessadorPagamento {
             System.out.println("Venda de R$ " + valor + " aprovada para: " + cartao.getTitular());
             System.out.println("Limite restante: R$ " + cartao.getLimiteDisponivel());
         } else {
-            System.out.println("Transação Negada: Saldo insuficiente para R$ " + valor);
+            System.out.println("Transacao Negada: Saldo insuficiente para R$ " + valor);
         }
     }
 
@@ -25,4 +25,4 @@ public class ProcessadorPagamento {
         System.out.println("Estorno de R$ " + valor + " realizado com sucesso.");
         System.out.println("Limite restante: R$ " + cartao.getLimiteDisponivel());
     }
-}
+ }

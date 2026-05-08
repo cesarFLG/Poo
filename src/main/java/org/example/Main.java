@@ -11,6 +11,8 @@ public class Main {
 
         payShield.executarVenda(2000.0);
 
-        payShield.executarVenda(4000.0);
+        payShield.executarVenda(6000.0);
+
+        System.out.println("Saldo atual: R$ " + meuCartao.getLimiteDisponivel());
     }
 }
