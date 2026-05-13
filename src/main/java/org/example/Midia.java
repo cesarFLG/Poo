@@ -13,7 +13,9 @@ public abstract class Midia {
     public abstract double calcularCusto();
 
 
-    public String getTitulo() { return titulo; }
+    public String getTitulo() {
+        return titulo;
+    }
 
     protected void exibirDetalhes() {
     }
