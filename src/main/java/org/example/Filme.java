@@ -38,5 +38,12 @@ public class Filme extends Midia implements  reproduzivel, baixavel {
     public String getQualidade() {
         return qualidade;
     }
+
+    public int getDuracaoEmMinutos(){
+        return duracaoEmMinutos;
+    }
+
+
+
 }
 
