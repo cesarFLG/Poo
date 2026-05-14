@@ -32,7 +32,7 @@ public class Filme extends Midia implements  reproduzivel, baixavel {
     @Override
     public void exibirDetalhes(){
         super.exibirDetalhes();
-        System.out.println("Qualidade: "+qualidade);
+        System.out.println("Qualidade: " +qualidade);
         System.out.println("Custo: "+calcularCusto());
     }
     public String getQualidade() {

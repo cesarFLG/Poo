@@ -8,7 +8,10 @@ public class Main {
 
 
         System.out.println("Duracao do Filme: " + conversorTempo.formatoMinutos(filme.getDuracaoEmMinutos()));
+        System.out.println("Duracao da musica: "+ conversorTempo.formatoMinutos(musica.duracaoEmMinutos));
 
+        System.out.println("Preco do Filme: "+filme.calcularCusto()+ " Reais");
+        System.out.println("Preco da musica: "+musica.calcularCusto()+ " Reais");
 
         processarPlayer(filme);
         processarPlayer(musica);

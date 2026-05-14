@@ -12,6 +12,7 @@ public class Musica extends Midia implements reproduzivel {
     @Override
     public void darPlay() {
         System.out.println("Tocando musica: " + titulo + " - Artista: " + artista);
+
     }
 
     @Override
