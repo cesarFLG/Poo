@@ -42,7 +42,4 @@ public class Filme extends Midia implements Reproduzivel, Baixavel {
     public int getDuracaoEmMinutos(){
         return super.getDuracaoEmMinutos();
     }
-
-
-
 }
