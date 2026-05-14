@@ -1,6 +1,6 @@
 package org.example;
 
-public class Musica extends Midia implements reproduzivel {
+public class Musica extends Midia implements Reproduzivel {
 
     private String artista;
 
@@ -11,7 +11,7 @@ public class Musica extends Midia implements reproduzivel {
 
     @Override
     public void darPlay() {
-        System.out.println("Tocando musica: " + titulo + " - Artista: " + artista);
+        System.out.println("Tocando musica: " + gettitulo() + " - Artista: " + artista);
 
     }
 
@@ -19,4 +19,5 @@ public class Musica extends Midia implements reproduzivel {
     public double calcularCusto() {
         return 2.00;
     }
+    public int getDuracaoEmMinutos() {return super.getDuracaoEmMinutos();}
 }

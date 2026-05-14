@@ -1,8 +1,8 @@
 package org.example;
 
-public class conversorTempo {
+public class ConversorTempo {
 
-    private conversorTempo(){}
+    private ConversorTempo(){}
 
     public static String formatoMinutos (int minutos){
         if  (minutos < 0){

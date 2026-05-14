@@ -1,6 +1,6 @@
 package org.example;
 
-public class Filme extends Midia implements  reproduzivel, baixavel {
+public class Filme extends Midia implements Reproduzivel, baixavel {
 
     private String qualidade;
 
@@ -11,12 +11,12 @@ public class Filme extends Midia implements  reproduzivel, baixavel {
     }
     @Override
     public void darPlay(){
-        System.out.println("Reproduzir Filme :"+ titulo + "em "+ qualidade);
+        System.out.println("Reproduzir Filme :"+ gettitulo() + "em "+ qualidade);;
     }
 
     @Override
     public void realizarDownload() {
-        System.out.println("Baixando filme :"+ titulo + "em "+ qualidade);
+        System.out.println("Baixando filme :"+ gettitulo() + "em "+ qualidade);
     }
 
     @Override
@@ -40,10 +40,8 @@ public class Filme extends Midia implements  reproduzivel, baixavel {
     }
 
     public int getDuracaoEmMinutos(){
-        return duracaoEmMinutos;
+        return super.getDuracaoEmMinutos();
     }
-
-
 
 }
 

@@ -1,6 +1,6 @@
 package org.example;
 
-public interface reproduzivel {
+public interface Reproduzivel {
 
     void darPlay();
 }

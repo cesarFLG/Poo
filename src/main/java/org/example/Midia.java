@@ -1,8 +1,8 @@
 package org.example;
 
 public abstract class Midia {
-    protected String titulo;
-    protected int duracaoEmMinutos;
+    private String titulo;
+    private final int duracaoEmMinutos;
 
     public Midia(String titulo, int duracaoEmMinutos) {
         this.titulo = titulo;
@@ -13,10 +13,14 @@ public abstract class Midia {
     public abstract double calcularCusto();
 
 
-    public String getTitulo() {
+    public String gettitulo() {
         return titulo;
     }
 
     protected void exibirDetalhes() {
+    }
+
+    protected int getDuracaoEmMinutos() {
+        return duracaoEmMinutos;
     }
 }
