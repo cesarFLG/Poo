@@ -5,9 +5,7 @@ import vitacare.model.*;
 
 import java.time.LocalDate;
 
-/**
- * Classe principal que valida todos os cenários das regras de negócio da VitaCare.
- */
+
 public class Main {
 
     public static void main(String[] args) {
@@ -37,7 +35,6 @@ public class Main {
         cenario8_ResumoAposentado();
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
 
     private static void cenario1_TitularComDependentes() {
         Titular titular = new Titular("111.111.111-11", "Ana Paula Souza",
@@ -137,7 +134,7 @@ public class Main {
                 LocalDate.of(1976, 8, 14), titular, TipoVinculo.CONJUGE);
         titular.adicionarDependente(conjuge);
 
-        // Titular pode acionar internação
+
         try {
             var ev = titular.acionarCobertura(TipoCobertura.INTERNACAO);
             System.out.println("✔ Titular: " + ev);
