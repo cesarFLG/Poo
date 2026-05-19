@@ -5,12 +5,7 @@ import vitacare.exceptions.CoberturaInvalidaException;
 
 import java.time.LocalDate;
 
-/**
- * Dependente de um Titular (cônjuge ou filho até 24 anos).
- * Não existe sem um Titular associado (Regra 2).
- * Mensalidade: 70% da mensalidade base pela faixa etária própria (Regra 5).
- * Não tem acesso à cobertura de internação (Regra 8).
- */
+
 public class Dependente extends Beneficiario {
 
     private static final double PERCENTUAL_MENSALIDADE = 0.70;
@@ -31,18 +26,12 @@ public class Dependente extends Beneficiario {
         this.tipoVinculo = tipoVinculo;
     }
 
-    // ── Mensalidade ────────────────────────────────────────────────────────────
 
     @Override
     public double calcularMensalidade() {
         return mensalidadeBase() * PERCENTUAL_MENSALIDADE;
     }
 
-    // ── Cobertura ──────────────────────────────────────────────────────────────
-
-    /**
-     * Impede que Dependente acione internação (Regra 8).
-     */
     @Override
     protected void validarCobertura(TipoCobertura tipo) {
         if (tipo == TipoCobertura.INTERNACAO) {
@@ -52,7 +41,6 @@ public class Dependente extends Beneficiario {
         }
     }
 
-    // ── Getters ────────────────────────────────────────────────────────────────
 
     public Titular getTitular() {
         return titular;

@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Titular do plano. Pode incluir até 3 dependentes (Regra 2).
- * Mensalidade: 100% da mensalidade base (Regra 4).
- */
+
 public class Titular extends Beneficiario {
 
     private static final int LIMITE_DEPENDENTES = 3;
@@ -53,11 +50,7 @@ public class Titular extends Beneficiario {
         return Collections.unmodifiableList(dependentes);
     }
 
-    // ── Resumo de contrato ─────────────────────────────────────────────────────
 
-    /**
-     * Emite o resumo do contrato familiar (Regra 6).
-     */
     public String emitirResumoContrato() {
         StringBuilder sb = new StringBuilder();
         sb.append("╔══════════════════════════════════════════════════════╗\n");

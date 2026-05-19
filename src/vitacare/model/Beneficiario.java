@@ -53,25 +53,17 @@ public abstract class Beneficiario {
         return acionamento;
     }
 
-    /**
-     * Ponto de extensão: subclasses lançam {@link CoberturaInvalidaException}
-     * para tipos de cobertura não permitidos.
-     */
     protected void validarCobertura(TipoCobertura tipo) {
-        // Por padrão, todos os tipos são permitidos; Dependente restringe INTERNACAO.
     }
 
     public List<AcionamentoCobertura> getHistoricoCoberturas() {
         return Collections.unmodifiableList(historicoCoberturas);
     }
 
-    // ── Utilitários ────────────────────────────────────────────────────────────
-
     public int calcularIdade() {
         return Period.between(dataNascimento, LocalDate.now()).getYears();
     }
 
-    // ── Getters ────────────────────────────────────────────────────────────────
 
     public String getCpf() {
         return cpf;
