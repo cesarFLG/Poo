@@ -23,10 +23,6 @@ public class Dependente extends Beneficiario {
         return mensalidadeBase() * PERCENTUAL_MENSALIDADE;
     }
 
-    public Titular getTitular() {
-        return titular;
-    }
-
     public TipoVinculo getTipoVinculo() {
         return tipoVinculo;
     }

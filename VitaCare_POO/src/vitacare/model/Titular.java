@@ -4,7 +4,6 @@ import vitacare.excetion.DependenteInvalidoException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Titular extends Beneficiario {
@@ -39,24 +38,16 @@ public class Titular extends Beneficiario {
         }
     }
 
-    public void removerDependente(Dependente dependente) {
-        dependentes.remove(dependente);
-    }
-
-    public List<Dependente> getDependentes() {
-        return Collections.unmodifiableList(dependentes);
-    }
-
     public String emitirResumoContrato() {
         StringBuilder sb = new StringBuilder();
         sb.append("╔══════════════════════════════════════════════════════╗\n");
         sb.append("║            RESUMO DE CONTRATO — VitaCare             ║\n");
         sb.append("╠══════════════════════════════════════════════════════╣\n");
-        sb.append(String.format("║  TITULAR : %-40s║\n", getNome()));
-        sb.append(String.format("║  CPF     : %-40s║\n", getCpf()));
-        sb.append(String.format("║  Idade   : %-40s║\n", calcularIdade() + " anos"));
-        sb.append(String.format("║  Tipo    : %-40s║\n", getTipoDescricao()));
-        sb.append(String.format("║  Mensalidade titular : R$ %-26s║\n",
+        sb.append(String.format("║  TITULAR : %-40s  ║\n", getNome()));
+        sb.append(String.format("║  CPF     : %-40s  ║\n", getCpf()));
+        sb.append(String.format("║  Idade   : %-40s  ║\n", calcularIdade() + " anos"));
+        sb.append(String.format("║  Tipo    : %-40s  ║\n", getTipoDescricao()));
+        sb.append(String.format("║  Mensalidade titular : R$ %-26s ║\n",
                 String.format("%.2f", calcularMensalidade())));
         sb.append("╠══════════════════════════════════════════════════════╣\n");
 
@@ -64,13 +55,13 @@ public class Titular extends Beneficiario {
         if (dependentes.isEmpty()) {
             sb.append("║  Sem dependentes cadastrados.                        ║\n");
         } else {
-            sb.append(String.format("║  %-51s║\n", "DEPENDENTES (" + dependentes.size() + ")"));
+            sb.append(String.format("║  %-51s ║\n", "DEPENDENTES (" + dependentes.size() + ")"));
             for (int i = 0; i < dependentes.size(); i++) {
                 Dependente d = dependentes.get(i);
-                sb.append(String.format("║  %d. %-48s║\n", i + 1, d.getNome()));
-                sb.append(String.format("║     Vínculo : %-37s║\n", d.getTipoVinculo().getDescricao()));
-                sb.append(String.format("║     Idade   : %-37s║\n", d.calcularIdade() + " anos"));
-                sb.append(String.format("║     Mensalidade : R$ %-31s║\n",
+                sb.append(String.format("║  %d. %-48s ║\n", i + 1, d.getNome()));
+                sb.append(String.format("║     Vínculo : %-37s  ║\n", d.getTipoVinculo().getDescricao()));
+                sb.append(String.format("║     Idade   : %-37s  ║\n", d.calcularIdade() + " anos"));
+                sb.append(String.format("║     Mensalidade : R$ %-31s ║\n",
                         String.format("%.2f", d.calcularMensalidade())));
                 totalDependentes += d.calcularMensalidade();
             }
@@ -78,7 +69,7 @@ public class Titular extends Beneficiario {
 
         double totalFamiliar = calcularMensalidade() + totalDependentes;
         sb.append("╠══════════════════════════════════════════════════════╣\n");
-        sb.append(String.format("║  TOTAL MENSAL DO GRUPO FAMILIAR: R$ %-16s║\n",
+        sb.append(String.format("║  TOTAL MENSAL DO GRUPO FAMILIAR: R$ %-16s ║\n",
                 String.format("%.2f", totalFamiliar)));
         sb.append("╚══════════════════════════════════════════════════════╝\n");
         return sb.toString();

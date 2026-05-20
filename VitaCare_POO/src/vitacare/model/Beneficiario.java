@@ -68,14 +68,6 @@ public abstract class Beneficiario {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
     @Override
     public String toString() {
         return String.format("%s | CPF: %s | Idade: %d anos | Mensalidade: R$ %.2f",
