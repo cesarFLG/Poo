@@ -2,28 +2,23 @@ package vitacare.model;
 
 import java.time.LocalDate;
 
-
 public class Aposentado extends Titular {
 
-    private static final double DESCONTO_APOSENTADO = 0.20;
+    private static final double DESCONTO = 0.20;
 
     private final String numeroBeneficioINSS;
 
     public Aposentado(String cpf, String nome, LocalDate dataNascimento, String numeroBeneficioINSS) {
         super(cpf, nome, dataNascimento);
-        if (numeroBeneficioINSS == null || numeroBeneficioINSS.isBlank()) {
-            throw new IllegalArgumentException("Número do benefício INSS é obrigatório para Aposentado.");
-        }
         this.numeroBeneficioINSS = numeroBeneficioINSS;
     }
 
     @Override
     public double calcularMensalidade() {
-        return mensalidadeBase() * (1 - DESCONTO_APOSENTADO);
+        return mensalidadeBase() * (1 - DESCONTO);
     }
 
-
-    public String getNumeroBoletimINSS() {
+    public String getNumeroBeneficioINSS() {
         return numeroBeneficioINSS;
     }
 

@@ -1,19 +1,15 @@
 package vitacare.model;
 
-import vitacare.exceptions.DependenteInvalidoException;
+import vitacare.excetion.DependenteInvalidoException;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Titular extends Beneficiario {
 
     private static final int LIMITE_DEPENDENTES = 3;
-    private static final int IDADE_MAXIMA_FILHO  = 24;
-    private static final DateTimeFormatter FORMATADOR = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private final List<Dependente> dependentes = new ArrayList<>();
 
@@ -21,25 +17,26 @@ public class Titular extends Beneficiario {
         super(cpf, nome, dataNascimento);
     }
 
-
     @Override
     public double calcularMensalidade() {
         return mensalidadeBase();
     }
 
-
     public void adicionarDependente(Dependente dependente) {
-        if (dependentes.size() >= LIMITE_DEPENDENTES) {
-            throw new DependenteInvalidoException(
-                    "Limite de " + LIMITE_DEPENDENTES + " dependentes já atingido para o titular " + getNome() + ".");
+        try {
+            if (dependentes.size() >= LIMITE_DEPENDENTES) {
+                throw new DependenteInvalidoException(
+                        "Limite de " + LIMITE_DEPENDENTES + " dependentes já atingido para o titular " + getNome() + ".");
+            }
+            if (!dependente.getTipoVinculo().idadeValida(dependente.calcularIdade())) {
+                throw new DependenteInvalidoException(
+                        dependente.getNome() + " tem " + dependente.calcularIdade()
+                        + " anos e não atende ao critério de idade para o vínculo " + dependente.getTipoVinculo().getDescricao() + ".");
+            }
+            dependentes.add(dependente);
+        } catch (DependenteInvalidoException e) {
+            System.out.println("Dependente recusado: " + e.getMessage());
         }
-        if (dependente.getTipoVinculo() == TipoVinculo.FILHO
-                && dependente.calcularIdade() > IDADE_MAXIMA_FILHO) {
-            throw new DependenteInvalidoException(
-                    "Filho(a) " + dependente.getNome() + " tem " + dependente.calcularIdade()
-                    + " anos e excede a idade máxima permitida de " + IDADE_MAXIMA_FILHO + " anos.");
-        }
-        dependentes.add(dependente);
     }
 
     public void removerDependente(Dependente dependente) {
@@ -49,7 +46,6 @@ public class Titular extends Beneficiario {
     public List<Dependente> getDependentes() {
         return Collections.unmodifiableList(dependentes);
     }
-
 
     public String emitirResumoContrato() {
         StringBuilder sb = new StringBuilder();

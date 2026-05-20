@@ -1,7 +1,8 @@
 package vitacare.model;
 
-import vitacare.enums.TipoCobertura;
-import vitacare.exceptions.CoberturaInvalidaException;
+import vitacare.cobertura.AcionamentoCobertura;
+import vitacare.excetion.CoberturaInvalidaException;
+import vitacare.cobertura.TipoCobertura;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,10 +12,9 @@ import java.util.List;
 
 public abstract class Beneficiario {
 
-
-    private static final double MENSALIDADE_ATE_18   = 180.00;
-    private static final double MENSALIDADE_19_A_59  = 380.00;
-    private static final double MENSALIDADE_60_MAIS  = 560.00;
+    private static final double MENSALIDADE_ATE_18  = 180.00;
+    private static final double MENSALIDADE_19_A_59 = 380.00;
+    private static final double MENSALIDADE_60_MAIS = 560.00;
 
     private final String cpf;
     private String nome;
@@ -23,15 +23,6 @@ public abstract class Beneficiario {
     private final List<AcionamentoCobertura> historicoCoberturas = new ArrayList<>();
 
     protected Beneficiario(String cpf, String nome, LocalDate dataNascimento) {
-        if (cpf == null || cpf.isBlank()) {
-            throw new IllegalArgumentException("CPF não pode ser nulo ou vazio.");
-        }
-        if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
-        }
-        if (dataNascimento == null || dataNascimento.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Data de nascimento inválida.");
-        }
         this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -47,13 +38,18 @@ public abstract class Beneficiario {
     public abstract double calcularMensalidade();
 
     public AcionamentoCobertura acionarCobertura(TipoCobertura tipo) {
-        validarCobertura(tipo);
-        AcionamentoCobertura acionamento = new AcionamentoCobertura(tipo, this.nome);
-        historicoCoberturas.add(acionamento);
-        return acionamento;
-    }
-
-    protected void validarCobertura(TipoCobertura tipo) {
+        try {
+            if (!tipo.isPermitidaParaDependente() && this instanceof Dependente) {
+                throw new CoberturaInvalidaException(
+                        "Cobertura de " + tipo.getDescricao() + " não disponível para dependentes. Beneficiário: " + nome);
+            }
+            AcionamentoCobertura acionamento = new AcionamentoCobertura(tipo, nome);
+            historicoCoberturas.add(acionamento);
+            return acionamento;
+        } catch (CoberturaInvalidaException e) {
+            System.out.println("Cobertura negada: " + e.getMessage());
+            return null;
+        }
     }
 
     public List<AcionamentoCobertura> getHistoricoCoberturas() {
@@ -64,7 +60,6 @@ public abstract class Beneficiario {
         return Period.between(dataNascimento, LocalDate.now()).getYears();
     }
 
-
     public String getCpf() {
         return cpf;
     }
@@ -74,9 +69,6 @@ public abstract class Beneficiario {
     }
 
     public void setNome(String nome) {
-        if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Nome não pode ser vazio.");
-        }
         this.nome = nome;
     }
 

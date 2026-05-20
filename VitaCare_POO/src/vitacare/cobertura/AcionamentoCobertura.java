@@ -1,6 +1,5 @@
-package vitacare.model;
+package vitacare.cobertura;
 
-import vitacare.enums.TipoCobertura;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

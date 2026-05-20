@@ -1,4 +1,4 @@
-package vitacare.exceptions;
+package vitacare.excetion;
 
 public class CoberturaInvalidaException extends RuntimeException {
     public CoberturaInvalidaException(String mensagem) {
